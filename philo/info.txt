@@ -1,0 +1,28 @@
+Create a thread for every philosopher
+each thread goes through following steps:
+- eat 
+- sleep 
+- think
+
+for eating philosophers need two forks, in case of five for example number 1 uses forks 5 and 2,
+number 2 uses 1 and 3.
+maybe call the forks 1.5 2.5 ...... 1.5 shared between 1 and 2 and so on 
+
+time_to_die:
+counts from the beginning of the simulation or the !beginning! of the last meal
+
+structure:
+
+1. get input into struct
+2. create multiple threads (number of philos)
+3. function each thread has to go through, should contain:
+	- eat, sleep, think (functions can be split up)
+	Eat function ??? (Learn more about mutex)
+		printf("%li %i is eating", timestamp, phil->ID);
+		usleep(tte) //time to eat
+	Sleep function
+		printf("%li %i is sleeping", timestamp, phil->ID);
+		usleep(tts) //time to sleep
+	Think function
+		printf("%li %i is thinking", timestamp, phil->ID);
+		usleep(tts) //time to sleep
