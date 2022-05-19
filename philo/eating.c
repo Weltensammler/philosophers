@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 18:48:09 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:31:11 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	eating(t_philosophers *vars, t_philid *varsid)
 {
-	pthread_mutex_lock(&vars->all);
-	pthread_mutex_unlock(&vars->all);
 	take_forks(varsid);
 	pthread_mutex_lock(&vars->check);
 	varsid->starteat = gettime() - varsid->nulltime;
