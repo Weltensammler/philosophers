@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 14:48:35 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:48:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 {
 	pthread_mutex_lock(&vars->all);
 	pthread_mutex_unlock(&vars->all);
-	// if (!checkifdead(vars, varsid))
 	take_forks(varsid);
 	pthread_mutex_lock(&vars->check);
 	varsid->starteat = gettime() - varsid->nulltime;
 	pthread_mutex_unlock(&vars->check);
-	// if (!checkifdead(vars, varsid))
 	printstate(2, varsid);
 	while (gettime() - varsid->nulltime < (varsid->starteat + vars->tte))
 	{
-		// checkifdead(vars, varsid);
 		usleep(1000);
 	}
 	varsid->eatcount++;
@@ -41,8 +38,6 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 
 void	take_forks(t_philid *varsid)
 {
-	// if (varsid->test != 1 && varsid->vars->stop != 1)
-	// {
 	if (varsid->id % 2 == 0)
 	{
 		pthread_mutex_lock(&varsid->lfork);
@@ -57,16 +52,12 @@ void	take_forks(t_philid *varsid)
 	varsid->leftf = 1;
 	printstate(1, varsid);
 	printstate(1, varsid);
-	// }
 }
 
 void	free_forks(t_philid *varsid)
 {
-	// if (varsid->test != 1 && varsid->vars->stop != 1)
-	// {
-		varsid->leftf = 0;
-		*varsid->rightf = 0;
-		pthread_mutex_unlock(&varsid->lfork);
-		pthread_mutex_unlock(varsid->rfork);
-	// }
+	varsid->leftf = 0;
+	*varsid->rightf = 0;
+	pthread_mutex_unlock(&varsid->lfork);
+	pthread_mutex_unlock(varsid->rfork);
 }

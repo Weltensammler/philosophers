@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 15:10:34 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:00:22 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ int	main(int argc, char **argv)
 {
 	t_philosophers	vars;
 	t_philid		*varsid;
-	int				i;
 
-	i = 0;
 	if (!checkinput(argc, argv))
 		return (0 * printf("Error, wrong input"));
 	init_vars(argc, argv, &vars);
 	varsid = init_varsid(&vars, 0);
-	while (i < vars.phils)
-		pthread_mutex_init(&varsid[i++].lfork, NULL);
+	while (vars.count < vars.phils)
+		pthread_mutex_init(&varsid[vars.count++].lfork, NULL);
 	pthread_mutex_init(&vars.all, NULL);
 	pthread_mutex_init(&vars.check, NULL);
 	init_threads(&vars, varsid);
@@ -33,12 +31,10 @@ int	main(int argc, char **argv)
 	pthread_mutex_lock(&vars.all);
 	vars.stop = 1;
 	pthread_mutex_unlock(&vars.all);
-	// printf("before join\n");
-	detachorjoin(&vars, varsid);
-	// printf("after join\n");
-	i = 0;
-	while (i < vars.phils)
-		pthread_mutex_destroy(&varsid[i++].lfork);
+	join(&vars, varsid);
+	vars.count = 0;
+	while (vars.count < vars.phils)
+		pthread_mutex_destroy(&varsid[vars.count++].lfork);
 	pthread_mutex_destroy(&vars.all);
 	pthread_mutex_destroy(&vars.check);
 	free(varsid);
@@ -51,6 +47,7 @@ int	init_vars(int argc, char **argv, t_philosophers *vars)
 	vars->ttd = ft_atoi(argv[2]);
 	vars->tte = ft_atoi(argv[3]);
 	vars->tts = ft_atoi(argv[4]);
+	vars->count = 0;
 	vars->todeath = 0;
 	vars->timestart = gettime();
 	vars->stop = 0;

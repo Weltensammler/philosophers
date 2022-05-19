@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 11:25:15 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:59:14 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_philosophers
 	int				todeath;
 	int				who;
 	int				allfull;
+	int				count;
 	int				stop;
 	pthread_mutex_t	death;
 	pthread_mutex_t	all;
@@ -65,7 +66,6 @@ long int	gettime(void);
 int			eating(t_philosophers *vars, t_philid *varsid);
 int			sleeping(t_philosophers *vars, t_philid *varsid);
 int			thinking(t_philid *varsid);
-int			checkifdead(t_philosophers *vars, t_philid *varsid);
 void		*cycle(t_philid *varsid);
 void		take_forks(t_philid *varsid);
 void		free_forks(t_philid *varsid);
@@ -74,9 +74,8 @@ int			ft_strchr(const char *str, int c);
 int			printstate(int what, t_philid *philid);
 void		init_threads(t_philosophers *vars, t_philid *varsid);
 int			maindeath(t_philosophers *vars, t_philid *varsid);
-void		detach(t_philosophers *vars, t_philid *varsid);
 void		join(t_philosophers *vars, t_philid *varsid);
-void		detachorjoin(t_philosophers *vars, t_philid *varsid);
 void		initzero(t_philid *varsid, int phil);
+void		setvarcheck(t_philosophers *vars, t_philid *varsid, int i);
 
 #endif

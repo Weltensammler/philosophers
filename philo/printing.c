@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:41:56 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 15:10:25 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:51:58 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	checkinput(int argc, char **argv)
 
 int	printstate(int what, t_philid *varsid)
 {
-	// if ((gettime() - varsid->nulltime) - varsid->starteat > varsid->vars->ttd)
-	// 	return (0);
 	pthread_mutex_lock(&varsid->vars->all);
 	if (varsid->vars->stop != 1)
 	{

@@ -1,3 +1,8 @@
+New:
+
+protect gainst Zeros!!!!!!!!!!!
+
+
 Create a thread for every philosopher
 each thread goes through following steps:
 - eat 
