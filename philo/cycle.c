@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/20 09:44:39 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/20 11:01:39 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	thinking(t_philid *varsid)
 {
 	varsid->startthink = gettime() - varsid->nulltime;
 	printstate(4, varsid);
-	// usleep(2000);
+	usleep(5000);
 	return (0);
 }
