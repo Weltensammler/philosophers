@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 19:13:28 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/20 09:44:39 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*cycle(t_philid *varsid)
 {
 	while ((gettime() - varsid->nulltime) - varsid->starteat
-		< varsid->vars->ttd && varsid->vars->stop != 1)
+		< varsid->vars->ttd)
 	{
 		if (varsid->vars->phils == 1)
 			return (0);
@@ -48,6 +48,6 @@ int	thinking(t_philid *varsid)
 {
 	varsid->startthink = gettime() - varsid->nulltime;
 	printstate(4, varsid);
-	usleep(2000);
+	// usleep(2000);
 	return (0);
 }

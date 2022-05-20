@@ -3,7 +3,7 @@ checking.c philo_help.c
 
 OBJECTS = $(SOURCE:.c=.o)
 
-FLAGS = -Werror -Wall -Wextra -pthread -fsanitize=thread
+FLAGS = -Werror -Wall -Wextra -pthread -fsanitize=thread -g
 
 NAME = philo
 
